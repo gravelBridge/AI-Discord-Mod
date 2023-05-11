@@ -87,7 +87,7 @@ class AI_Discord(discord.Client):
                         print("Deleted a message with an inappropriate image. The message was sent from " + str(sent_message.author.id))
                         if sent_message.author.id in warning_list:
                             warning_list[sent_message.author.id] += 1
-                            if warning_list[sent_message.author.id] >= 3:
+                            if warning_list[sent_message.author.id] >= WARNINGS:
                                 await tempmute(sent_message.channel, sent_message.author, MUTE_TIME)
                                 warning_list[sent_message.author.id] = 0
                         else:
@@ -101,7 +101,7 @@ class AI_Discord(discord.Client):
 
             if sent_message.author.id in warning_list:
                 warning_list[sent_message.author.id] += 1
-                if warning_list[sent_message.author.id] >= 3:
+                if warning_list[sent_message.author.id] >= WARNINGS:
                     await tempmute(sent_message.channel, sent_message.author, MUTE_TIME)
                     warning_list[sent_message.author.id] = 0
             else:
