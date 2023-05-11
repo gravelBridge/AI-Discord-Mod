@@ -2,6 +2,10 @@
 
 AI-Discord-Mod is a Discord bot that utilizes OpenAI's GPT-3.5 API for text moderation and HuggingFaces' transformer model for image moderation. This bot helps maintain a safe and respectful environment in your Discord server.
 
+<img width="1470" alt="Screenshot 2023-05-10 at 9 13 26 PM" src="https://github.com/gravelBridge/AI-Discord-Mod/assets/107640947/7ab29395-7b97-44c8-a724-26bc99252a3d">
+
+<img width="872" alt="Screenshot 2023-05-10 at 9 46 52 PM" src="https://github.com/gravelBridge/AI-Discord-Mod/assets/107640947/28de987f-f746-4de6-8f45-d4a17327cef9">
+
 
 ## 🌟 Features
 
