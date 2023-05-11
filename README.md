@@ -2,6 +2,7 @@
 
 AI-Discord-Mod is a Discord bot that utilizes OpenAI's GPT-3.5 API for text moderation and HuggingFaces' transformer model for image moderation. This bot helps maintain a safe and respectful environment in your Discord server.
 
+
 ## 🌟 Features
 
 - Text moderation using OpenAI's GPT-3.5 API
@@ -9,9 +10,11 @@ AI-Discord-Mod is a Discord bot that utilizes OpenAI's GPT-3.5 API for text mode
 - Warns and mutes users for inappropriate messages
 - Configurable warning limit and mute duration
 
+
 ## 🚀 Getting Started
 
 Follow these steps to set up your own instance of AI-Discord-Mod:
+
 
 ### 📋 Prerequisites
 
@@ -26,6 +29,7 @@ pip install -r requirements.txt
 pip install transformers datasets
 pip install torch # or pip install tensorflow depending on your preference
 ```
+
 
 ## 🤖 Setting up a Discord Bot
   1. Go to the [Discord Developer Portal](https://discord.com/developers/applications).
@@ -55,14 +59,18 @@ pip install torch # or pip install tensorflow depending on your preference
      MUTE_TIME=duration_of_mute
      ```
   6. Save and close the `.env` file.
+
+
 ## 🏃 Running the Bot
 To run the bot, navigate to the project directory and run:
 `python ai-discord-moderator/discord_bot.py`
 
 The bot should now be active in your Discord server and automatically moderate text and images based on the rules defined in the ai_discord_functions.py and discord_bot.py scripts.
 
+
 ## ⚠️ Note
 This bot uses AI models which, while powerful, might not always make perfect decisions. It is recommended to have human moderators oversee the bot's actions for best results.
+
 
 ## 📝 License
 This project is licensed under the GPL-3.0 License. See the LICENSE file for details.
