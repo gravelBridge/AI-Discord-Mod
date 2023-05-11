@@ -74,3 +74,7 @@ This bot uses AI models which, while powerful, might not always make perfect dec
 
 ## 📝 License
 This project is licensed under the GPL-3.0 License. See the LICENSE file for details.
+
+
+
+### ⭐ Remember to leave a star! It gives me motivation to keep working on awesome projects like this. ❤️
