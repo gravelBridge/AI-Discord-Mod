@@ -92,7 +92,7 @@ class AI_Discord(discord.Client):
                                 warning_list[sent_message.author.id] = 0
                         else:
                             warning_list[sent_message.author.id] = 1
-                        await sent_message.channel.send("Deleted " + sent_message.author.mention + "'s image because it was inappropriate. " + sent_message.author.metion + " has " + str(int(WARNINGS) -  warning_list[sent_message.author.id]) + " warnings left.")
+                        await sent_message.channel.send("Deleted " + sent_message.author.mention + "'s image because it was inappropriate. " + sent_message.author.mention + " has " + str(int(WARNINGS) -  warning_list[sent_message.author.id]) + " warnings left.")
                         return
         
         if await(message_is_safe(message.content, OPENAI_API_KEY)):
