@@ -13,6 +13,9 @@ BOT_TOKEN = os.getenv("DISCORD_BOT_TOKEN")
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 MUTE_TIME = os.getenv("MUTE_TIME")
 WARNINGS = os.getenv("WARNINGS")
+USE_TRIGGERING_WORDS = os.getenv("USE_TRIGGERING_WORDS")
+if USE_TRIGGERING_WORDS == "True":
+    TRIGGERING_WORDS = os.getenv("TRIGGERING_WORDS").split(",")
 
 if not BOT_TOKEN or not OPENAI_API_KEY:
     print("You did not set your .env file correctly.")
@@ -74,6 +77,11 @@ class AI_Discord(discord.Client):
 
         if message.author.id == self.user.id:
             return
+        if USE_TRIGGERING_WORDS == "True":
+            if not any(map(message.content.__contains__, TRIGGERING_WORDS)):
+                return
+            else:
+                print("Triggering word found in the filter, sending to OpenAI...")
 
         if message.attachments:
             attachments = message.attachments

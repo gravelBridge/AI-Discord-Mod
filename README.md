@@ -49,7 +49,7 @@ pip install torch # or pip install tensorflow depending on your preference
      `cd AI-Discord-Mod`
   3. Copy the .env.template file and rename it to .env:
      `cp .env.template .env`
-  4. Open the .env file in a text editor and replace the placeholders with your `OPENAI_API_KEY` and `DISCORD_BOT_TOKEN`. Set the `WARNINGS` and `MUTE_TIME` values as per your preference.
+  4. Open the .env file in a text editor and replace the placeholders with your `OPENAI_API_KEY` and `DISCORD_BOT_TOKEN`. Set the `WARNINGS`, `MUTE_TIME`, `USE_TRIGGERING_WORDS`, and `TRIGGERING_WORDS` values as per your preference.
   5. Your .env file should look like this:
      ```
      # OPENAI_API_KEY: Your OpenAI API Key, must be connected to an account with a payment method.
@@ -61,6 +61,11 @@ pip install torch # or pip install tensorflow depending on your preference
      WARNINGS=number_of_warnings
      # MUTE_TIME: How long the bot should mute the user for after all warnings are used up. Ex: 1s for 1 second, 3m for 3 minutes, 4h for four hours, 5d for five days.
      MUTE_TIME=duration_of_mute
+     
+     # USE_TRIGGERING_WORDS: If the bot should only send requests for moderation if the message contains a triggering word that is defined below.
+     USE_TRIGGERING_WORDS=True
+     # TRIGGERING_WORDS: A list of triggering words, comma separated, that have to sent in order for message to be checked via AI.
+     TRIGGERING_WORDS=The list of triggering words, comma separated. A default list has been provided in the .env.template file.
      ```
   6. Save and close the `.env` file.
 
