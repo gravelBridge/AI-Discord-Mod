@@ -14,8 +14,16 @@ OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 MUTE_TIME = os.getenv("MUTE_TIME")
 WARNINGS = os.getenv("WARNINGS")
 USE_TRIGGERING_WORDS = os.getenv("USE_TRIGGERING_WORDS")
+
 if USE_TRIGGERING_WORDS == "True":
-    TRIGGERING_WORDS = os.getenv("TRIGGERING_WORDS").split(",")
+    TRIGGERING_WORDS_FILE = os.getenv("TRIGGERING_WORDS")
+    if TRIGGERING_WORDS_FILE:
+        with open(TRIGGERING_WORDS_FILE, "r") as file:
+            TRIGGERING_WORDS = file.read().split(",")
+    else:
+        TRIGGERING_WORDS = []
+else:
+    TRIGGERING_WORDS = []
 
 if not BOT_TOKEN or not OPENAI_API_KEY:
     print("You did not set your .env file correctly.")
