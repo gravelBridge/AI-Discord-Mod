@@ -64,8 +64,8 @@ pip install torch # or pip install tensorflow depending on your preference
      
      # USE_TRIGGERING_WORDS: If the bot should only send requests for moderation if the message contains a triggering word that is defined below.
      USE_TRIGGERING_WORDS=True
-     # TRIGGERING_WORDS: A list of triggering words, comma separated, that have to sent in order for message to be checked via AI.
-     TRIGGERING_WORDS=The list of triggering words, comma separated. A default list has been provided in the .env.template file.
+     # TRIGGERING_WORDS: A txt file directory to a list of triggering words, comma separated, that have to sent in order for message to be checked via AI. 
+     TRIGGERING_WORDS=The text file directory
      ```
   6. Save and close the `.env` file.
 
