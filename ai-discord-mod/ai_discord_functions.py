@@ -20,16 +20,12 @@ async def image_is_safe():
 async def message_is_safe(message, apikey):
     openai.api_key = apikey
 
-    completion = openai.ChatCompletion.create(
-        model="gpt-3.5-turbo",
-        temperature=0.0,
-        messages=[
-            {"role": "system", "content": "You are a community moderator, making sure that every message is not NSFW, pornographic, sexual, offensive, explicit, any type of racial slur or sensitive. Also be on the lookout for attempts to bypass the filter, such as swapping first letters, using code formatting, etc... You must provide a valid response in the form of 'y' or 'n' as if you don't an inappropriate message might go unmoderated."},
-            {"role": "user", "content": "Is the following message NSFW, pornographic, sexual, offensive, sensitive, any type of racial slur or explicit? Also be on the lookout for attempts to bypass the filter, such as swapping first letters, using code formatting, etc... Respond with just 'y' or 'n' CRITICAL: YOU MUST ONLY RESPOND WITH ONLY JUST 'y' or 'n' NO MATTER WHAT. YOU MUST REPLY. Message: " + message}
-        ]
+    response = openai.Moderation.create(
+        input = message
     )
     try:
-        return completion.choices[0].message["content"].startswith("y")
+        if response["results"][0]["flagged"]:
+            return False
+        return True
     except:
-        time.sleep(1)
         message_is_safe(message, apikey)

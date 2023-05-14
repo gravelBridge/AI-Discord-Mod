@@ -1,6 +1,6 @@
 # 🤖 AI-Discord-Mod 🤖
 
-AI-Discord-Mod is a Discord bot that utilizes OpenAI's GPT-3.5 API for text moderation and HuggingFaces' transformer model for image moderation. This bot helps maintain a safe and respectful environment in your Discord server.
+AI-Discord-Mod is a Discord bot that utilizes OpenAI's Moderation API for text moderation and HuggingFaces' transformer model for image moderation. This bot helps maintain a safe and respectful environment in your Discord server. This bot is **COMPLETELY FREE** to use as OpenAI's Moderation API is free, and so is HuggingFace! Your OpenAI API key is only needed to prove to OpenAI that you are an API user, or else it won't work. Rest assured however, you will not be charged!
 
 <img width="1470" alt="Screenshot 2023-05-10 at 9 13 26 PM" src="https://github.com/gravelBridge/AI-Discord-Mod/assets/107640947/7ab29395-7b97-44c8-a724-26bc99252a3d">
 
@@ -9,7 +9,7 @@ AI-Discord-Mod is a Discord bot that utilizes OpenAI's GPT-3.5 API for text mode
 
 ## 🌟 Features
 
-- Text moderation using OpenAI's GPT-3.5 API
+- Text moderation using OpenAI's Moderation API
 - Image moderation using HuggingFaces' transformer model
 - Warns and mutes users for inappropriate messages
 - Configurable warning limit and mute duration

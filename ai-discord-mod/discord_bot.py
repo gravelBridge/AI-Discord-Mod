@@ -104,25 +104,30 @@ class AI_Discord(discord.Client):
                         if sent_message.author.id in warning_list:
                             warning_list[sent_message.author.id] += 1
                             if warning_list[sent_message.author.id] >= int(WARNINGS):
+                                await sent_message.channel.send("Deleted " + sent_message.author.mention + "'s image because it was inappropriate. " + sent_message.author.mention + " has " + str(int(WARNINGS) -  warning_list[sent_message.author.id]) + " warnings left.")
                                 await tempmute(sent_message.channel, sent_message.author, MUTE_TIME)
                                 warning_list[sent_message.author.id] = 0
+                            else:
+                                await sent_message.channel.send("Deleted " + sent_message.author.mention + "'s image because it was inappropriate. " + sent_message.author.mention + " has " + str(int(WARNINGS) -  warning_list[sent_message.author.id]) + " warnings left.")
                         else:
                             warning_list[sent_message.author.id] = 1
-                        await sent_message.channel.send("Deleted " + sent_message.author.mention + "'s image because it was inappropriate. " + sent_message.author.mention + " has " + str(int(WARNINGS) -  warning_list[sent_message.author.id]) + " warnings left.")
+                            await sent_message.channel.send("Deleted " + sent_message.author.mention + "'s image because it was inappropriate. " + sent_message.author.mention + " has " + str(int(WARNINGS) -  warning_list[sent_message.author.id]) + " warnings left.")
                         return
         
-        if await(message_is_safe(message.content, OPENAI_API_KEY)):
+        if not await(message_is_safe(message.content, OPENAI_API_KEY)):
             await sent_message.delete()
             print("Deleted an inappropriate message. The message was sent from " + str(sent_message.author.id))
-
             if sent_message.author.id in warning_list:
                 warning_list[sent_message.author.id] += 1
                 if warning_list[sent_message.author.id] >= int(WARNINGS):
+                    await sent_message.channel.send("Deleted " + sent_message.author.mention + "'s message because it was inappropriate.")
                     await tempmute(sent_message.channel, sent_message.author, MUTE_TIME)
                     warning_list[sent_message.author.id] = 0
+                else:
+                    await sent_message.channel.send("Deleted " + sent_message.author.mention + "'s message because it was inappropriate. " + sent_message.author.mention + " has " + str(int(WARNINGS) -  warning_list[sent_message.author.id]) + " warnings left.")
             else:
                 warning_list[sent_message.author.id] = 1
-            await sent_message.channel.send("Deleted " + sent_message.author.mention + "'s message because it was inappropriate. " + sent_message.author.mention + " has " + str(int(WARNINGS) -  warning_list[sent_message.author.id]) + " warnings left.")
+                await sent_message.channel.send("Deleted " + sent_message.author.mention + "'s message because it was inappropriate. " + sent_message.author.mention + " has " + str(int(WARNINGS) -  warning_list[sent_message.author.id]) + " warnings left.")
 
 
 
