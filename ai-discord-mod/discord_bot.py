@@ -177,7 +177,7 @@ async def tempmute(ctx, member: discord.Member=None):
     await ctx.send(embed=muted_embed)
     await asyncio.sleep(seconds)
     await member.remove_roles(Muted)
-    unmute_embed = discord.Embed(title="Mute Over!", description=f'{member.mention}\'s mute for {reason} is over after {time}')
+    unmute_embed = discord.Embed(title="Mute Over!", description=f'{member.mention} is now unmuted.')
     await ctx.send(embed=unmute_embed)
 
 
