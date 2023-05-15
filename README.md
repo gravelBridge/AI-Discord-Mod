@@ -4,8 +4,7 @@ Sven is a Discord bot that utilizes OpenAI's Moderation API for text moderation 
 
 <img width="905" alt="Screenshot 2023-05-14 at 9 52 49 PM" src="https://github.com/gravelBridge/AI-Discord-Mod/assets/107640947/a99b8325-d8f7-471a-8a5e-f341557d7c21">
 
-## 🚀 Invite an Invite-Ready, Hosted Sven Here:
-### [Invite Sven](https://discord.com/api/oauth2/authorize?client_id=1106027638180565003&permissions=8&scope=bot)
+# 🚀 Add an Invite-Ready, Hosted Sven Here: [Invite Sven](https://discord.com/api/oauth2/authorize?client_id=1106027638180565003&permissions=8&scope=bot)
 
 ## 🌟 Features
 
@@ -68,6 +67,7 @@ pip install torch # or pip install tensorflow depending on your preference
 ## 🏃 Running the Bot
 To run the bot, navigate to the project directory and run:
 `python ai-discord-moderator/discord_bot.py`
+For help, run the /help command in your discord server!
 
 The bot should now be active in your Discord server and automatically moderate text and images based on the rules defined in the ai_discord_functions.py and discord_bot.py scripts.
 
