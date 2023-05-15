@@ -8,7 +8,7 @@ vqa_pipeline = pipeline("visual-question-answering")
 
 async def image_is_safe():
     image =  Image.open("toModerate.jpeg")
-    question = "Is the image safe for a public online community?"
+    question = "Is the image safe for a public online community to view?"
 
     result = vqa_pipeline(image, question, top_k=1)[0]
     answer = result["answer"].lower()
