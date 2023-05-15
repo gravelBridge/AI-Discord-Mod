@@ -197,6 +197,7 @@ async def on_ready():
 
 @bot.event
 async def on_message(message):
+    await bot.wait_until_ready()
     if message.author.id == bot.user.id:
         return
     sent_message = message
