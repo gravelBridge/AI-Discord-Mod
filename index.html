@@ -10,7 +10,7 @@
             background-color: #f4f7f9;
             font-family: Arial, sans-serif;
         }
-        .hero-section {
+        .hero-section, .features-section {
             padding: 100px 0;
             text-align: center;
         }
@@ -29,6 +29,13 @@
             color: white;
             text-decoration: none;
         }
+        .feature {
+            margin-bottom: 30px;
+        }
+        .feature-icon {
+            font-size: 50px;
+            color: #7289DA;
+        }
     </style>
 </head>
 <body>
@@ -39,5 +46,28 @@
             <a href="https://discord.com/api/oauth2/authorize?client_id=1106027638180565003&permissions=8&scope=bot" class="btn-invite">Invite Sven</a>
         </div>
     </section>
+    <section class="features-section">
+        <div class="container">
+            <h2>Features</h2>
+            <div class="row">
+                <div class="col-md-4 feature">
+                    <i class="feature-icon fas fa-shield-alt"></i>
+                    <h3>Secure Moderation</h3>
+                    <p>Sven ensures a safe community experience by moderating both images and text for inappropriate content.</p>
+                </div>
+                <div class="col-md-4 feature">
+                    <i class="feature-icon fas fa-robot"></i>
+                    <h3>AI-Powered</h3>
+                    <p>With cutting-edge AI technology, Sven effectively filters out spam and harmful content from your server.</p>
+                </div>
+                <div class="col-md-4 feature">
+                    <i class="feature-icon fas fa-users"></i>
+                    <h3>Community Building</h3>
+                    <p>Sven allows you to focus more on your community, taking over the moderation tasks seamlessly.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 </body>
 </html>
