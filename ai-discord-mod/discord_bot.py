@@ -249,7 +249,7 @@ async def on_message(message):
                         await sent_message.channel.send("Deleted " + sent_message.author.mention + "'s image because it was inappropriate. " + sent_message.author.mention + " has " + str(int(warnings) -  warning_list[str(guild.id)][message.author.id]) + " warnings left.")
                     return
     
-    if not await(message_is_safe(message.content, OPENAI_API_KEY)):
+    if not message.attachments and not await(message_is_safe(message.content, OPENAI_API_KEY)):
         await sent_message.delete()
         print("Deleted an inappropriate message. The message was sent from " + str(sent_message.author.id))
         if not use_warnings:
