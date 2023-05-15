@@ -172,6 +172,7 @@ async def tempmute(ctx, member: discord.Member=None):
             await Muted.edit(reason=None, position=role_of_muted)
         except:
             await ctx.send("**Failed to mute user, ensure that the bot role is above all other roles.**")
+            return
         for channel in guild.channels:
             await channel.set_permissions(Muted, speak=False, send_messages=False, read_message_history=True, read_messages=True)
 
