@@ -72,7 +72,7 @@ set_mute_time: 10m
 use_warnings: False
 ```
 
-Also note that the Sven role should be **ABOVE** normal members, in order to create and enforce the muted role.
+Also note that the Sven role should be **ABOVE** all other members, in order to create and enforce the muted role.
 """, ephemeral = True)
     
 @bot.tree.command(name="use_warnings", description="Whether to automatically mute users after a certain amount of warnings.")
