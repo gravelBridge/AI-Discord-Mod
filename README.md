@@ -2,11 +2,9 @@
 
 Sven is a Discord bot that utilizes OpenAI's Moderation API for text moderation and HuggingFaces' transformer model for image moderation. This bot helps maintain a safe and respectful environment in your Discord server. This bot is **COMPLETELY FREE** to use as OpenAI's Moderation API is free, and so is HuggingFace! Your OpenAI API key is only needed to prove to OpenAI that you are an API user. Rest assured however, you will not be charged!
 
-<img width="1470" alt="Screenshot 2023-05-10 at 9 13 26 PM" src="https://github.com/gravelBridge/AI-Discord-Mod/assets/107640947/7ab29395-7b97-44c8-a724-26bc99252a3d">
+<img width="905" alt="Screenshot 2023-05-14 at 9 52 49 PM" src="https://github.com/gravelBridge/AI-Discord-Mod/assets/107640947/a99b8325-d8f7-471a-8a5e-f341557d7c21">
 
-<img width="872" alt="Screenshot 2023-05-10 at 9 46 52 PM" src="https://github.com/gravelBridge/AI-Discord-Mod/assets/107640947/28de987f-f746-4de6-8f45-d4a17327cef9">
-
-## 🚀 Invite a Hosted Sven Here:
+## 🚀 Invite an Invite-Ready, Hosted Sven Here:
 ### [Invite Sven](https://discord.com/api/oauth2/authorize?client_id=1106027638180565003&permissions=8&scope=bot)
 
 ## 🌟 Features
@@ -51,7 +49,7 @@ pip install torch # or pip install tensorflow depending on your preference
      `cd AI-Discord-Mod`
   3. Copy the .env.template file and rename it to .env:
      `cp .env.template .env`
-  4. Open the .env file in a text editor and replace the placeholders with your `OPENAI_API_KEY` and `DISCORD_BOT_TOKEN`. Set the `WARNINGS`, `MUTE_TIME`, `USE_TRIGGERING_WORDS`, and `TRIGGERING_WORDS` values as per your preference.
+  4. Open the .env file in a text editor and replace the placeholders with your `OPENAI_API_KEY` and `DISCORD_BOT_TOKEN`. Set the `USE_TRIGGERING_WORDS` and `TRIGGERING_WORDS` values as per your preference.
   5. Your .env file should look like this:
      ```
      # OPENAI_API_KEY: Your OpenAI API Key, must be connected to an account with a payment method.
@@ -59,11 +57,6 @@ pip install torch # or pip install tensorflow depending on your preference
      #DISCORD_BOT_TOKEN: Your Discord Bot Token that's in your Discord Server.
      DISCORD_BOT_TOKEN=your_discord_bot_token
 
-     # WARNINGS: The number of warnings the bot should give before muting the user.
-     WARNINGS=number_of_warnings
-     # MUTE_TIME: How long the bot should mute the user for after all warnings are used up. Ex: 1s for 1 second, 3m for 3 minutes, 4h for four hours, 5d for five days.
-     MUTE_TIME=duration_of_mute
-     
      # USE_TRIGGERING_WORDS: If the bot should only send requests for moderation if the message contains a triggering word that is defined below.
      USE_TRIGGERING_WORDS=True
      # TRIGGERING_WORDS: A txt file directory to a list of triggering words, comma separated, that have to sent in order for message to be checked via AI. 
