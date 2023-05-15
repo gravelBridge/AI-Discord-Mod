@@ -267,4 +267,8 @@ async def on_message(message):
     
     await bot.process_commands(message)
 
+    @bot.event
+    async def on_message_edit(message_before, message_after):
+        await on_message(message_after)
+    
 bot.run(BOT_TOKEN)
