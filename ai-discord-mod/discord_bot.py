@@ -80,6 +80,7 @@ set_warnings <warnings>: Sets the number of warnings a user can have before muti
 set_mute_time <time>: Sets the amount of time a user is muted for after having too many warnings. Example: 1d, 3m, 5s, 6h
 use_warnings <boolean>: Whether to use warnings and mute the user, or just only delete the message.
 set_sensitivity <float from 0-1>: The image moderation sensitivity. As sensitivity increases, image moderation becomes more strict, and as sensitivity decreases, image moderation becomes less strict.
+set_logs_channel <channel id>: The logs channel id that Sven will log logs to. Note that Sven must have permission to view and send messages to this channel.
 ```
 
 Note the default presets:
@@ -88,10 +89,26 @@ set_warnings: 3
 set_mute_time: 10m
 use_warnings: False
 set_sensitivity: 0.5
+set_logs_channel: None (will not log any deletions)
 ```
 
 Also note that the Sven role should be **ABOVE** all other members, in order to create and enforce the muted role.
 """, ephemeral = True)
+
+@bot.tree.command(name="set_logs_channel", description="Set a server wide channel id for logging messages.")
+@app_commands.describe(logs_channel_id = "Logs Channel ID")
+async def set_logs_channel(interaction: discord.Interaction, logs_channel_id: str):
+    if not interaction.user.guild_permissions.administrator:
+        await interaction.response.send_message(f"You do not have permission to use this command.", ephemeral=True)
+        return
+    try:
+        servers[str(interaction.guild.id)] = servers.get(str(interaction.guild.id), {})
+        servers[str(interaction.guild.id)]['logs_channel_id'] = logs_channel_id
+        await save_servers()
+        await interaction.response.send_message(f"**Successfully set logs channel id to: {logs_channel_id}**", ephemeral=True)
+    except:
+        await interaction.response.send_message("**Failed to parse logs channel id. Logs Channel ID must be an integer.**", ephemeral=True)
+
     
 @bot.tree.command(name="use_warnings", description="Whether to automatically mute users after a certain amount of warnings.")
 @app_commands.describe(use_warnings = "Use Warnings")
@@ -266,6 +283,12 @@ async def on_message(message):
                 if not result:
                     await sent_message.delete()
                     print("Deleted a message with an inappropriate image. The message was sent from " + str(sent_message.author.id))
+
+                    logs_channel_id = servers[str(guild.id)].get('logs_channel_id', None)
+                    if logs_channel_id:
+                        logs_channel = bot.get_channel(int(logs_channel_id))
+                        await logs_channel.send(f"Deleted an image from {sent_message.author.mention} because it was inappropriate.")
+
                     if not use_warnings:
                         await sent_message.channel.send("Deleted " + sent_message.author.mention + "'s image because it was inappropriate.")
                         return
@@ -288,6 +311,12 @@ async def on_message(message):
     if not message.attachments and not await(message_is_safe(message.content, OPENAI_API_KEY)):
         await sent_message.delete()
         print("Deleted an inappropriate message. The message was sent from " + str(sent_message.author.id))
+
+        logs_channel_id = servers[str(guild.id)].get('logs_channel_id', None)
+        if logs_channel_id:
+            logs_channel = bot.get_channel(int(logs_channel_id))
+            await logs_channel.send(f"Deleted a message from {sent_message.author.mention} because it was inappropriate. The message was: '{sent_message.content}'")
+
         if not use_warnings:
             await sent_message.channel.send("Deleted " + sent_message.author.mention + "'s message because it was inappropriate.")
             return
