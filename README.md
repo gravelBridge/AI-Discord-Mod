@@ -2,7 +2,7 @@
 
 Sven is a Discord bot that utilizes OpenAI's Moderation API for text moderation and HuggingFaces' transformer model for image moderation. This bot helps maintain a safe and respectful environment in your Discord server. This bot is **COMPLETELY FREE** to use as OpenAI's Moderation API is free, and so is HuggingFace! Your OpenAI API key is only needed to prove to OpenAI that you are an API user. Rest assured however, you will not be charged!
 
-<img width="905" alt="Screenshot 2023-05-14 at 9 52 49 PM" src="https://github.com/gravelBridge/AI-Discord-Mod/assets/107640947/a99b8325-d8f7-471a-8a5e-f341557d7c21">
+<img width="918" alt="Screenshot 2023-05-15 at 6 59 54 PM" src="https://github.com/gravelBridge/AI-Discord-Mod/assets/107640947/cf077bde-e1c5-4c24-8e6d-6922d518a2cc">
 
 # 🚀 Add an Invite-Ready, Hosted Sven Here: [Invite Sven](https://discord.com/api/oauth2/authorize?client_id=1106027638180565003&permissions=8&scope=bot)
 
