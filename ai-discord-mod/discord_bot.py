@@ -13,6 +13,7 @@ load_dotenv()
 # Create a lock for each file
 servers_lock = asyncio.Lock()
 warnings_lock = asyncio.Lock()
+sensitivity_lock = asyncio.Lock()
 
 # Save servers settings to file
 async def save_servers():
@@ -46,6 +47,21 @@ try:
 except FileNotFoundError:
     warning_list = {}
 
+async def save_sensitivity():
+    async with sensitivity_lock:
+        try:
+            with open("sensitivity.json", "w") as file:
+                json.dump(sensitivity, file)
+        except IOError as e:
+            print(f"Error saving sensitivity: {e}")
+
+# Load sensitivity settings from file
+try:
+    with open("sensitivity.json", "r") as file:
+        sensitivity = json.load(file)
+except FileNotFoundError:
+    sensitivity = {}
+
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -63,6 +79,7 @@ help: Shows this information.
 set_warnings <warnings>: Sets the number of warnings a user can have before muting them.
 set_mute_time <time>: Sets the amount of time a user is muted for after having too many warnings. Example: 1d, 3m, 5s, 6h
 use_warnings <boolean>: Whether to use warnings and mute the user, or just only delete the message.
+set_sensitivity <float from 0-1>: The image moderation sensitivity. As sensitivity increases, image moderation becomes more strict, and as sensitivity decreases, image moderation becomes less strict.
 ```
 
 Note the default presets:
@@ -70,6 +87,7 @@ Note the default presets:
 set_warnings: 3
 set_mute_time: 10m
 use_warnings: False
+set_sensitivity: 0.5
 ```
 
 Also note that the Sven role should be **ABOVE** all other members, in order to create and enforce the muted role.
@@ -85,6 +103,23 @@ async def use_warnings(interaction: discord.Interaction, use_warnings: bool):
     servers[str(interaction.guild.id)]['use_warnings'] = use_warnings
     await save_servers()
     await interaction.response.send_message(f"Successfully set use_warnings to **{use_warnings}**.", ephemeral=True)
+
+@bot.tree.command(name="set_sensitivity", description="Set a server wide image moderation sensitivity.")
+@app_commands.describe(sensitivity = "Image Moderation Sensitivity")
+async def set_sensitivity(interaction: discord.Interaction, sensitivity: float):
+    if not interaction.user.guild_permissions.administrator:
+        await interaction.response.send_message(f"You do not have permission to use this command.", ephemeral=True)
+        return
+    if sensitivity > 1:
+        await interaction.response.send_message("**Failed to parse sensitivity. Sensitivity must be a number from 0-1.**", ephemeral=True)
+        return
+    try:
+        servers[str(interaction.guild.id)] = servers.get(str(interaction.guild.id), {})
+        servers[str(interaction.guild.id)]['sensitivity'] = sensitivity
+        await save_servers()
+        await interaction.response.send_message(f"**Successfully set image moderation sensitivity to: {sensitivity}**", ephemeral=True)
+    except:
+        await interaction.response.send_message("**Failed to parse sensitivity. Sensitivity must be a number from 0-1.**", ephemeral=True)
 
 
 @bot.tree.command(name="set_warnings", description="Set a server wide warnings limit before muting a member.")
@@ -225,7 +260,8 @@ async def on_message(message):
         for attachment in attachments:
             if attachment.content_type.startswith("image"):
                 await attachment.save("toModerate.jpeg")
-                result = await image_is_safe()
+                sensitivity = servers[str(guild.id)].get('sensitivity', 0.5)
+                result = await image_is_safe(sensitivity=sensitivity)
 
                 if not result:
                     await sent_message.delete()

@@ -6,16 +6,18 @@ ImageFile.LOAD_TRUNCATED_IMAGES = True
 
 vqa_pipeline = pipeline("visual-question-answering")
 
-async def image_is_safe():
+async def image_is_safe(sensitivity):
     image =  Image.open("toModerate.jpeg")
-    question = "Is the image safe for a public online community to view?"
-
+    question = "Does the image contain pornographic, adult, gore, sexual, or other NSFW content?"
+    sensitivity = 1 - sensitivity
     result = vqa_pipeline(image, question, top_k=1)[0]
     answer = result["answer"].lower()
-    
+
     print(result)
 
-    if result["score"] > 0.8 and answer.startswith("n"):
+    if result["score"] > sensitivity and answer.startswith("y"):
+        return False
+    elif result["score"] < sensitivity and answer.startswith("n"):
         return False
     return True
 
