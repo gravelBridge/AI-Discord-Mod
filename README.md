@@ -4,7 +4,7 @@ Sven is a Discord bot that utilizes OpenAI's Moderation API for text moderation 
 
 <img width="919" alt="Screenshot 2023-05-15 at 9 14 12 PM" src="https://github.com/gravelBridge/AI-Discord-Mod/assets/107640947/95324ac4-5b76-4124-9679-e8f8dabb299d">
 
-# 🚀 Add an Invite-Ready, Hosted Sven Here: [Invite Sven](https://discord.com/api/oauth2/authorize?client_id=1106027638180565003&permissions=8&scope=bot)
+# 🚀 Add an Invite-Ready, Hosted Sven Here: [Invite Sven](https://discord.com/api/oauth2/authorize?client_id=1106027638180565003&permissions=1099780144144&scope=bot)
 
 ## 🌟 Features
 
